@@ -1,0 +1,1 @@
+# Documentação sobre os scripts de IA e como treiná-los

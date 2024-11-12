@@ -1,0 +1,1 @@
+// Rotas para criar e gerenciar relatos

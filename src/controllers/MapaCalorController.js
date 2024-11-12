@@ -1,0 +1,1 @@
+// Controle da geração do mapa de calor

@@ -1,0 +1,1 @@
+// Rotas para integração com o sistema de IA

@@ -1,0 +1,1 @@
+// Funções auxiliares para integração e processamento com modelos de IA

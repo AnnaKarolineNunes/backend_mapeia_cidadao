@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Usuario {
+  id              Int        @id @default(autoincrement())
+  nome            String
+  email           String     @unique
+  senha           String
+  tipoUsuario     String
+  relatos         Relato[]   @relation("UsuarioRelatos")
+}
+
+model Relato {
+  id              Int        @id @default(autoincrement())
+  dataCriacao     DateTime   @default(now())
+  localizacao     String
+  categoria       String
+  status          String
+  descricao       String?
+  usuario         Usuario    @relation("UsuarioRelatos", fields: [usuarioId], references: [id])
+  usuarioId       Int
+  acompanhamentos Acompanhamento[]
+  mapaCalor       MapaCalor?
+  inteligencia    InteligenciaArtificialRelato[]
+}
+
+model Acompanhamento {
+  id              Int        @id @default(autoincrement())
+  dataAtualizacao DateTime   @default(now())
+  statusAtual     String
+  descricaoProgresso String
+  relato          Relato     @relation(fields: [relatoId], references: [id])
+  relatoId        Int
+}
+
+model Autoridade {
+  id              Int        @id @default(autoincrement())
+  nome            String
+  orgao           String
+  emailContato    String     @unique
+  relatos         Relato[]   @relation("AutoridadeRelatos")
+}
+
+model Chat {
+  id              Int        @id @default(autoincrement())
+  mensagem        String
+  dataHora        DateTime   @default(now())
+  usuario         Usuario    @relation(fields: [usuarioId], references: [id])
+  usuarioId       Int
+}
+
+model MapaCalor {
+  id              Int        @id @default(autoincrement())
+  coordenadasProblemas String[]
+  dataAtualizacao DateTime   @default(now())
+  relato          Relato     @relation(fields: [relatoId], references: [id])
+  relatoId        Int
+}
+
+model Questionario {
+  id              Int        @id @default(autoincrement())
+  perguntas       String[]
+  opcoesResposta  Json
+  relato          Relato     @relation(fields: [relatoId], references: [id])
+  relatoId        Int
+}
+
+model InteligenciaArtificial {
+  id              Int        @id @default(autoincrement())
+  algoritmo       String
+  parametros      Json
+  relatos         InteligenciaArtificialRelato[]
+}
+
+model InteligenciaArtificialRelato {
+  id              Int                    @id @default(autoincrement())
+  inteligenciaId  Int
+  relatoId        Int
+  inteligencia    InteligenciaArtificial @relation(fields: [inteligenciaId], references: [id])
+  relato          Relato                 @relation(fields: [relatoId], references: [id])
+  @@unique([inteligenciaId, relatoId])
+}

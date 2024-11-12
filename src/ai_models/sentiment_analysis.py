@@ -1,0 +1,1 @@
+# Script para realizar análise de sentimentos dos relatos

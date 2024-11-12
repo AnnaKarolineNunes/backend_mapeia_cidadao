@@ -1,0 +1,1 @@
+// Modelo representando funcionalidades de IA

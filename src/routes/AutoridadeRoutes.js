@@ -1,0 +1,1 @@
+// Definições das rotas para autoridades

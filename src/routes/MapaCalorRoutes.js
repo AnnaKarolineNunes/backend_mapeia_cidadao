@@ -1,0 +1,1 @@
+//  Rotas para gerenciar o mapa de calor

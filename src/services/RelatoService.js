@@ -1,0 +1,1 @@
+// Lógica para criação e gerenciamento de relatos
