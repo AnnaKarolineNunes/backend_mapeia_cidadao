@@ -1,8 +1,14 @@
-// Lógica para gerenciar os usuários
-
 const UsuarioService = require('../services/UsuarioService');
 
+/**
+ * Controlador responsável por lidar com as requisições relacionadas aos usuários.
+ */
 class UsuarioController {
+  /**
+   * Cria um novo usuário.
+   * @param {Object} req - Objeto de requisição HTTP.
+   * @param {Object} res - Objeto de resposta HTTP.
+   */
   static async criarUsuario(req, res) {
     try {
       const data = req.body;
@@ -13,6 +19,11 @@ class UsuarioController {
     }
   }
 
+  /**
+   * Obtém um usuário pelo ID.
+   * @param {Object} req - Objeto de requisição HTTP.
+   * @param {Object} res - Objeto de resposta HTTP.
+   */
   static async obterUsuarioPorId(req, res) {
     try {
       const { id } = req.params;
@@ -23,6 +34,11 @@ class UsuarioController {
     }
   }
 
+  /**
+   * Atualiza um usuário pelo ID.
+   * @param {Object} req - Objeto de requisição HTTP.
+   * @param {Object} res - Objeto de resposta HTTP.
+   */
   static async atualizarUsuario(req, res) {
     try {
       const { id } = req.params;
@@ -34,6 +50,11 @@ class UsuarioController {
     }
   }
 
+  /**
+   * Deleta um usuário pelo ID.
+   * @param {Object} req - Objeto de requisição HTTP.
+   * @param {Object} res - Objeto de resposta HTTP.
+   */
   static async deletarUsuario(req, res) {
     try {
       const { id } = req.params;
@@ -45,4 +66,4 @@ class UsuarioController {
   }
 }
 
-module.exports = UsuarioController;
+export default UsuarioController 

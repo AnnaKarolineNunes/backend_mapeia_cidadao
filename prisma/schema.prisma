@@ -1,11 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -20,6 +14,7 @@ model Usuario {
   senha           String
   tipoUsuario     String
   relatos         Relato[]   @relation("UsuarioRelatos")
+  chats           Chat[]
 }
 
 model Relato {
@@ -31,9 +26,12 @@ model Relato {
   descricao       String?
   usuario         Usuario    @relation("UsuarioRelatos", fields: [usuarioId], references: [id])
   usuarioId       Int
+  autoridade      Autoridade @relation("AutoridadeRelatos", fields: [autoridadeId], references: [id])
+  autoridadeId    Int
   acompanhamentos Acompanhamento[]
   mapaCalor       MapaCalor?
   inteligencia    InteligenciaArtificialRelato[]
+  questionario    Questionario?
 }
 
 model Acompanhamento {
@@ -63,18 +61,18 @@ model Chat {
 
 model MapaCalor {
   id              Int        @id @default(autoincrement())
-  coordenadasProblemas String[]
+  coordenadasProblemas Json
   dataAtualizacao DateTime   @default(now())
   relato          Relato     @relation(fields: [relatoId], references: [id])
-  relatoId        Int
+  relatoId        Int        @unique
 }
 
 model Questionario {
-  id              Int        @id @default(autoincrement())
-  perguntas       String[]
+  id              Int    @id @default(autoincrement())
+  perguntas       Json
   opcoesResposta  Json
-  relato          Relato     @relation(fields: [relatoId], references: [id])
-  relatoId        Int
+  relato          Relato @relation(fields: [relatoId], references: [id])
+  relatoId        Int    @unique // Relação um-para-um
 }
 
 model InteligenciaArtificial {
