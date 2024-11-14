@@ -1,4 +1,4 @@
-const Usuario = require('../models/Usuario');
+import Usuario from '../models/Usuario.js';
 
 /**
  * Serviço responsável por gerenciar as operações relacionadas aos usuários.
@@ -65,5 +65,4 @@ class UsuarioService {
     }
   }
 }
-
-export default UsuarioService
+export default  UsuarioService;

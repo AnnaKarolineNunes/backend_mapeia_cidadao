@@ -1,5 +1,5 @@
 // Autenticação de usuários e autoridades
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 /**
  * Middleware de autenticação.
@@ -34,4 +34,4 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-export default authMiddleware 
+export default  authMiddleware ;

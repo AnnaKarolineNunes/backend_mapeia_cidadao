@@ -1,10 +1,9 @@
-//  Rotas para operações de usuários
+import express from 'express';
+import UsuarioController from '../controllers/UsuarioController.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { PrismaClient } from '@prisma/client';
 
-const express = require('express');
-const UsuarioController = require('./controllers/UsuarioController');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const { PrismaClient } = require('@prisma/client');
 const router = express.Router();
 const prisma = new PrismaClient();
 

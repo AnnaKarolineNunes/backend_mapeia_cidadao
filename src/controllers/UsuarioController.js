@@ -1,4 +1,5 @@
-const UsuarioService = require('../services/UsuarioService');
+import UsuarioService from '../services/UsuarioService.js';
+
 
 /**
  * Controlador responsável por lidar com as requisições relacionadas aos usuários.
@@ -66,4 +67,4 @@ class UsuarioController {
   }
 }
 
-export default UsuarioController 
+export default  UsuarioController ;
