@@ -1,1 +1,0 @@
-// Modelo Prisma para mapear problemas em um mapa de calor

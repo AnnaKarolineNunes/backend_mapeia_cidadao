@@ -1,1 +1,0 @@
-// Lógica para criação e atualização do mapa de calor

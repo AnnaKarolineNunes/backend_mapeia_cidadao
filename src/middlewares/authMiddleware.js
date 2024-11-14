@@ -1,4 +1,3 @@
-// Autenticação de usuários e autoridades
 import jwt from 'jsonwebtoken';
 
 /**
@@ -20,18 +19,24 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
+    // Verifica se a chave secreta está definida
+    if (!process.env.JWT_SECRET) {
+      throw new Error('Chave secreta JWT não definida');
+    }
+
     // Verifica e decodifica o token usando a chave secreta definida nas variáveis de ambiente
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    
+    console.log('Token decodificado:', decoded);
+
     // Se o token for válido, armazena as informações do usuário decodificado na requisição
     req.usuario = decoded;
-    
+
     // Passa o controle para o próximo middleware ou controlador
     next();
   } catch (error) {
-    // Caso o token seja inválido, retorna um erro de autenticação (401 - Unauthorized)
-    res.status(401).json({ erro: 'Token inválido.' });
+    // Caso o token seja inválido ou ocorra um erro durante a verificação, retorna um erro de autenticação (401 - Unauthorized)
+    res.status(401).json({ erro: 'Token inválido ou erro no servidor.', mensagemErroInterna: error.message });
   }
 };
 
-export default  authMiddleware ;
+export default authMiddleware;

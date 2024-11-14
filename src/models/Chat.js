@@ -1,1 +1,0 @@
-// Modelo Prisma para mensagens de chat

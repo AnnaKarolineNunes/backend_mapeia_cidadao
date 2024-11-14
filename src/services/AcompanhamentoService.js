@@ -1,1 +1,0 @@
-// Lógica de acompanhamento do progresso dos relatos

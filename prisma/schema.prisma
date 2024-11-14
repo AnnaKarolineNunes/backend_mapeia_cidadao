@@ -7,12 +7,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Enum para definir os tipos de usuário possíveis
+enum TipoUsuario {
+  user
+  admin
+}
+
 model Usuario {
   id              Int        @id @default(autoincrement())
   nome            String
   email           String     @unique
   senha           String
-  tipoUsuario     String
+  tipoUsuario     TipoUsuario
   relatos         Relato[]   @relation("UsuarioRelatos")
   chats           Chat[]
 }

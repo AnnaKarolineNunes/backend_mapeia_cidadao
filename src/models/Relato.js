@@ -1,1 +1,0 @@
-// Modelo Prisma para relatos dos usuários

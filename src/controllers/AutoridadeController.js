@@ -1,1 +1,0 @@
-// Lógica para interação das autoridades
